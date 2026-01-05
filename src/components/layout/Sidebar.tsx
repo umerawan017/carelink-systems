@@ -25,7 +25,7 @@ interface NavItem {
 }
 
 const mainNavItems: NavItem[] = [
-  { icon: LayoutDashboard, label: 'Dashboard', href: '/' },
+  { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard' },
   { icon: Users, label: 'Patients', href: '/patients' },
   { icon: Calendar, label: 'Appointments', href: '/appointments' },
   { icon: FileText, label: 'Medical Records', href: '/records' },
@@ -73,13 +73,13 @@ export function Sidebar() {
       <div className="flex h-full flex-col">
         {/* Logo */}
         <div className="flex h-16 items-center justify-between border-b border-sidebar-border px-4">
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/dashboard" className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary">
               <Heart className="h-5 w-5 text-primary-foreground" />
             </div>
             {!collapsed && (
               <span className="text-lg font-semibold text-sidebar-foreground">
-                MedCare
+                CareLink
               </span>
             )}
           </Link>

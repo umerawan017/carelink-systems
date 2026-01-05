@@ -1,73 +1,69 @@
-# Welcome to your Lovable project
+# CareLink Systems
 
-## Project info
+A comprehensive healthcare management platform designed for modern medical practices.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Features
 
-## How can I edit this code?
+- **Patient Management**: Complete patient profiles with medical history, allergies, and conditions
+- **Appointment Scheduling**: Calendar-based scheduling with conflict detection and real-time updates
+- **Vitals Tracking**: Interactive charts for blood pressure, heart rate, weight, and temperature trends
+- **Medical Records**: Centralized medical logs with provider attribution
+- **User Authentication**: Secure login and signup with role-based access
 
-There are several ways of editing your application.
+## Technology Stack
 
-**Use Lovable**
+- **Frontend**: React 18, TypeScript, Vite
+- **Styling**: Tailwind CSS, shadcn/ui components
+- **Charts**: Recharts for data visualization
+- **Backend**: Supabase (PostgreSQL, Authentication, Real-time)
+- **State Management**: TanStack React Query
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js 18+ and npm
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+```bash
+# Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to project directory
+cd carelink-systems
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Environment Variables
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The application requires the following environment variables:
 
-**Use GitHub Codespaces**
+- `VITE_SUPABASE_URL` - Supabase project URL
+- `VITE_SUPABASE_PUBLISHABLE_KEY` - Supabase anon/public key
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+```
+src/
+├── components/
+│   ├── appointments/    # Appointment scheduling components
+│   ├── dashboard/       # Dashboard widgets
+│   ├── layout/          # Layout components (Header, Sidebar)
+│   ├── patients/        # Patient management components
+│   ├── ui/              # Reusable UI components
+│   └── vitals/          # Vitals tracking components
+├── hooks/               # Custom React hooks
+├── pages/               # Route pages
+├── types/               # TypeScript type definitions
+└── lib/                 # Utility functions
+```
 
-This project is built with:
+## License
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Copyright © 2024 CareLink Systems. All rights reserved.

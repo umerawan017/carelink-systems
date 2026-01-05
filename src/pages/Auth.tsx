@@ -95,10 +95,10 @@ const Auth = () => {
             </div>
           </div>
           <h1 className="text-4xl font-bold text-primary-foreground mb-4">
-            MedCare
+            CareLink Systems
           </h1>
           <p className="text-xl text-primary-foreground/80 mb-8">
-            Enterprise Healthcare Management Platform
+            Healthcare Management Platform
           </p>
           <div className="space-y-4 text-left text-primary-foreground/70">
             <div className="flex items-center gap-3">
@@ -129,7 +129,7 @@ const Auth = () => {
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary">
                 <Heart className="h-6 w-6 text-primary-foreground" />
               </div>
-              <span className="text-2xl font-bold text-foreground">MedCare</span>
+              <span className="text-2xl font-bold text-foreground">CareLink</span>
             </div>
           </div>
 
@@ -140,7 +140,7 @@ const Auth = () => {
             <p className="text-muted-foreground mt-2">
               {isLogin
                 ? 'Sign in to access your healthcare dashboard'
-                : 'Join MedCare to start managing patient care'}
+                : 'Join CareLink to start managing patient care'}
             </p>
           </div>
 

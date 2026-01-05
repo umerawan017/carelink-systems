@@ -14,7 +14,258 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      appointments: {
+        Row: {
+          created_at: string | null
+          date: string
+          duration: number | null
+          end_time: string
+          id: string
+          notes: string | null
+          patient_id: string
+          provider_id: string
+          start_time: string
+          status: string | null
+          type: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          date: string
+          duration?: number | null
+          end_time: string
+          id?: string
+          notes?: string | null
+          patient_id: string
+          provider_id: string
+          start_time: string
+          status?: string | null
+          type?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          date?: string
+          duration?: number | null
+          end_time?: string
+          id?: string
+          notes?: string | null
+          patient_id?: string
+          provider_id?: string
+          start_time?: string
+          status?: string | null
+          type?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_patient_id_fkey"
+            columns: ["patient_id"]
+            isOneToOne: false
+            referencedRelation: "patients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      medical_logs: {
+        Row: {
+          attachments: string[] | null
+          created_at: string | null
+          date: string
+          description: string | null
+          id: string
+          patient_id: string
+          provider_id: string
+          title: string
+          type: string | null
+        }
+        Insert: {
+          attachments?: string[] | null
+          created_at?: string | null
+          date: string
+          description?: string | null
+          id?: string
+          patient_id: string
+          provider_id: string
+          title: string
+          type?: string | null
+        }
+        Update: {
+          attachments?: string[] | null
+          created_at?: string | null
+          date?: string
+          description?: string | null
+          id?: string
+          patient_id?: string
+          provider_id?: string
+          title?: string
+          type?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "medical_logs_patient_id_fkey"
+            columns: ["patient_id"]
+            isOneToOne: false
+            referencedRelation: "patients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      patients: {
+        Row: {
+          address: string | null
+          allergies: string[] | null
+          blood_type: string | null
+          conditions: string[] | null
+          created_at: string | null
+          created_by: string | null
+          date_of_birth: string
+          email: string | null
+          first_name: string
+          gender: string | null
+          id: string
+          insurance_id: string | null
+          insurance_provider: string | null
+          last_name: string
+          phone: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          address?: string | null
+          allergies?: string[] | null
+          blood_type?: string | null
+          conditions?: string[] | null
+          created_at?: string | null
+          created_by?: string | null
+          date_of_birth: string
+          email?: string | null
+          first_name: string
+          gender?: string | null
+          id?: string
+          insurance_id?: string | null
+          insurance_provider?: string | null
+          last_name: string
+          phone?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          address?: string | null
+          allergies?: string[] | null
+          blood_type?: string | null
+          conditions?: string[] | null
+          created_at?: string | null
+          created_by?: string | null
+          date_of_birth?: string
+          email?: string | null
+          first_name?: string
+          gender?: string | null
+          id?: string
+          insurance_id?: string | null
+          insurance_provider?: string | null
+          last_name?: string
+          phone?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          email: string | null
+          first_name: string
+          id: string
+          last_name: string
+          role: string | null
+          specialty: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          email?: string | null
+          first_name: string
+          id?: string
+          last_name: string
+          role?: string | null
+          specialty?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          email?: string | null
+          first_name?: string
+          id?: string
+          last_name?: string
+          role?: string | null
+          specialty?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      vitals: {
+        Row: {
+          blood_pressure_diastolic: number | null
+          blood_pressure_systolic: number | null
+          created_at: string | null
+          heart_rate: number | null
+          height: number | null
+          id: string
+          notes: string | null
+          oxygen_saturation: number | null
+          patient_id: string
+          provider_id: string | null
+          recorded_at: string | null
+          temperature: number | null
+          weight: number | null
+        }
+        Insert: {
+          blood_pressure_diastolic?: number | null
+          blood_pressure_systolic?: number | null
+          created_at?: string | null
+          heart_rate?: number | null
+          height?: number | null
+          id?: string
+          notes?: string | null
+          oxygen_saturation?: number | null
+          patient_id: string
+          provider_id?: string | null
+          recorded_at?: string | null
+          temperature?: number | null
+          weight?: number | null
+        }
+        Update: {
+          blood_pressure_diastolic?: number | null
+          blood_pressure_systolic?: number | null
+          created_at?: string | null
+          heart_rate?: number | null
+          height?: number | null
+          id?: string
+          notes?: string | null
+          oxygen_saturation?: number | null
+          patient_id?: string
+          provider_id?: string | null
+          recorded_at?: string | null
+          temperature?: number | null
+          weight?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "vitals_patient_id_fkey"
+            columns: ["patient_id"]
+            isOneToOne: false
+            referencedRelation: "patients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never

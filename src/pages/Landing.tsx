@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Heart, Calendar, Users, FileText, Activity, Shield, ArrowRight, CheckCircle } from 'lucide-react';
+import { Heart, Calendar, Users, FileText, Activity, Shield, ArrowRight, CheckCircle, Star, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const features = [
@@ -42,6 +42,77 @@ const benefits = [
   'Access records from anywhere',
   'Automated appointment reminders',
   'Comprehensive analytics dashboard',
+];
+
+const pricingPlans = [
+  {
+    name: 'Starter',
+    price: '49',
+    description: 'Perfect for solo practitioners and small clinics',
+    features: [
+      'Up to 100 patients',
+      'Basic appointment scheduling',
+      'Patient records management',
+      'Email support',
+      '5 GB storage',
+    ],
+    popular: false,
+  },
+  {
+    name: 'Professional',
+    price: '99',
+    description: 'Ideal for growing practices with multiple providers',
+    features: [
+      'Up to 500 patients',
+      'Advanced scheduling with conflict detection',
+      'Vitals tracking & analytics',
+      'Real-time updates',
+      'Priority support',
+      '25 GB storage',
+      'Custom reports',
+    ],
+    popular: true,
+  },
+  {
+    name: 'Enterprise',
+    price: '249',
+    description: 'For large healthcare organizations',
+    features: [
+      'Unlimited patients',
+      'Multi-location support',
+      'Advanced analytics dashboard',
+      'API access',
+      'Dedicated account manager',
+      'Unlimited storage',
+      'Custom integrations',
+      'SSO & advanced security',
+    ],
+    popular: false,
+  },
+];
+
+const testimonials = [
+  {
+    quote: "CareLink has transformed how we manage our practice. The scheduling system alone has saved us hours every week.",
+    author: 'Dr. Sarah Mitchell',
+    role: 'Family Medicine Physician',
+    clinic: 'Riverside Family Clinic',
+    rating: 5,
+  },
+  {
+    quote: "The vitals tracking feature gives me instant insight into patient trends. It's become an essential part of our care workflow.",
+    author: 'Dr. James Chen',
+    role: 'Internal Medicine',
+    clinic: 'Metro Health Partners',
+    rating: 5,
+  },
+  {
+    quote: "Finally, a system that our entire staff actually enjoys using. The interface is intuitive and the support team is exceptional.",
+    author: 'Amanda Rodriguez, RN',
+    role: 'Practice Manager',
+    clinic: 'Coastal Wellness Center',
+    rating: 5,
+  },
 ];
 
 export default function Landing() {
@@ -123,6 +194,101 @@ export default function Landing() {
                   {feature.title}
                 </h3>
                 <p className="text-muted-foreground">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+              Simple, Transparent Pricing
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Choose the plan that fits your practice. All plans include a 14-day free trial.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {pricingPlans.map((plan, index) => (
+              <div
+                key={index}
+                className={`relative bg-card rounded-2xl p-8 border ${
+                  plan.popular 
+                    ? 'border-primary shadow-lg shadow-primary/10 scale-105' 
+                    : 'border-border'
+                } transition-all hover:shadow-lg`}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <span className="bg-primary text-primary-foreground text-sm font-medium px-4 py-1 rounded-full">
+                      Most Popular
+                    </span>
+                  </div>
+                )}
+                <div className="text-center mb-6">
+                  <h3 className="text-xl font-semibold text-foreground mb-2">{plan.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
+                  <div className="flex items-baseline justify-center gap-1">
+                    <span className="text-4xl font-bold text-foreground">${plan.price}</span>
+                    <span className="text-muted-foreground">/month</span>
+                  </div>
+                </div>
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-center gap-3">
+                      <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
+                      <span className="text-foreground text-sm">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link to="/auth" className="block">
+                  <Button 
+                    className="w-full" 
+                    variant={plan.popular ? 'default' : 'outline'}
+                  >
+                    Start Free Trial
+                  </Button>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+              Trusted by Healthcare Providers
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              See what medical professionals are saying about CareLink Systems.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="bg-card rounded-2xl p-8 border border-border relative"
+              >
+                <Quote className="h-10 w-10 text-primary/20 absolute top-6 right-6" />
+                <div className="flex gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-primary text-primary" />
+                  ))}
+                </div>
+                <p className="text-foreground mb-6 italic leading-relaxed">
+                  "{testimonial.quote}"
+                </p>
+                <div className="border-t border-border pt-4">
+                  <p className="font-semibold text-foreground">{testimonial.author}</p>
+                  <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                  <p className="text-sm text-primary">{testimonial.clinic}</p>
+                </div>
               </div>
             ))}
           </div>

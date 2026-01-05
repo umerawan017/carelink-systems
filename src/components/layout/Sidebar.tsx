@@ -1,20 +1,21 @@
-import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { LogOut, Heart, Bell } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { useAuth } from '@/hooks/useAuth';
+import { supabase } from '@/integrations/supabase/client';
 import {
   LayoutDashboard,
   Users,
   Calendar,
   FileText,
   Settings,
-  LogOut,
   ChevronLeft,
   ChevronRight,
-  Heart,
-  Bell,
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { useLocation } from 'react-router-dom';
 
 interface NavItem {
   icon: React.ElementType;
@@ -36,7 +37,31 @@ const bottomNavItems: NavItem[] = [
 
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
+  const [profile, setProfile] = useState<any>(null);
   const location = useLocation();
+  const { user, signOut } = useAuth();
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (!user) return;
+      
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('user_id', user.id)
+        .maybeSingle();
+
+      if (!error && data) {
+        setProfile(data);
+      }
+    };
+
+    fetchProfile();
+  }, [user]);
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
 
   return (
     <aside
@@ -124,6 +149,7 @@ export function Sidebar() {
             );
           })}
           <button
+            onClick={handleSignOut}
             className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-sidebar-foreground/70 transition-all duration-200 hover:bg-destructive/10 hover:text-destructive"
           >
             <LogOut className="h-5 w-5 flex-shrink-0" />
@@ -136,14 +162,16 @@ export function Sidebar() {
           <div className="border-t border-sidebar-border p-4">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
-                <span className="text-sm font-medium text-primary">AF</span>
+                <span className="text-sm font-medium text-primary">
+                  {profile?.first_name?.[0] || 'U'}{profile?.last_name?.[0] || 'U'}
+                </span>
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-sidebar-foreground truncate">
-                  Dr. Amanda Foster
+                  {profile?.first_name || 'User'} {profile?.last_name || ''}
                 </p>
                 <p className="text-xs text-muted-foreground truncate">
-                  Primary Care
+                  {profile?.specialty || 'Healthcare Provider'}
                 </p>
               </div>
             </div>
